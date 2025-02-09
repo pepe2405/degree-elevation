@@ -14,6 +14,8 @@ const App: React.FC = () => {
   const [showIntermediatePolygons, setShowIntermediatePolygons] = useState(true);
   const [elevationSteps, setElevationSteps] = useState(1);
   const [fps, setFps] = useState(0);
+  // Нов state за броя на контролните точки
+  const [pointCount, setPointCount] = useState(0);
 
   // Създаваме ref-ове, за да пазим актуалните стойности на състоянието
   const showControlPolygonRef = useRef(showControlPolygon);
@@ -149,6 +151,9 @@ const App: React.FC = () => {
         }
       }
     }
+
+    // Обновяваме броя на точките
+    setPointCount(controlPointsRef.current.length);
   };
 
   // Функция за изчистване на всички контролни точки от екрана
@@ -306,6 +311,8 @@ const App: React.FC = () => {
           />
         </label>
         <label style={{ marginLeft: '10px' }}>FPS: {fps}</label>
+        {/* Поле, показващо броя на контролните точки */}
+        <label style={{ marginLeft: '10px' }}>Points: {pointCount}</label>
         <button type="button" onClick={clearScreen} style={{ marginLeft: '10px' }}>
           Clear Screen
         </button>
